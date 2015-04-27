@@ -119,7 +119,7 @@ function displayAnswer(n1, n2, newNumber){
   data.splice(data.indexOf(n2), 1);
   
   $('.equation-area, .mask').fadeOut();
-  $('.answer-input').val('');
+  $('.answer-input').blur().val('');
   
   console.log(newNumber.length);
   var i;
