@@ -3,7 +3,18 @@
 var width = self.frameElement ? 960 : innerWidth,
     height = self.frameElement ? 500 : innerHeight;
 
-var data = d3.range(20).map(function() { return [Math.random() * width, Math.random() * height]; });
+var data = d3.range(20).map(function(d) {
+  return {
+    id: d,
+    digit: Math.floor(Math.random() * 10),
+    coordinates: [Math.random() * width, Math.random() * height]
+  };
+});
+
+var newIndex = 20;
+
+$('.equation-area, .mask').hide();
+
 console.log(data);
 var transform = ["", "-webkit-", "-moz-", "-ms-", "-o-"].reduce(function(p, v) { return v + "transform" in document.body.style ? v : p; }) + "transform";
 
@@ -13,7 +24,7 @@ var radius0 = 32,
     radius1 = 48;
 
 var drag = d3.behavior.drag()
-    .origin(function(d) { return {x: d[0], y: d[1]}; })
+    .origin(function(d) { return {x: d.coordinates[0], y: d.coordinates[1]}; })
     .on("dragstart", dragstarted)
     .on("drag", dragged)
     .on("dragend", dragended);
@@ -21,16 +32,14 @@ var drag = d3.behavior.drag()
 d3.select("body")
     .on("touchstart", nozoom)
     .on("touchmove", nozoom)
-  .selectAll("div")
+  .selectAll(".digit")
     .data(data)
   .enter().append("div")
-    .style(transform, function(d) { return "translate(" + d[0] + "px," + d[1] + "px)"; })
-    .style("margin-top", -radius0 + "px")
-    .style("margin-left", -radius0 + "px")
-    .style("width", radius0 * 2 + "px")
-    .style("height", radius0 * 2 + "px")
-    .style("border-radius", radius0 + "px")
-    .style("background", function(d, i) { return color(i); })
+    .attr('class', 'digit draggable')
+    .attr('data-index', function(d){ return d.id; })
+    .style(transform, function(d) { return "translate(" + d.coordinates[0] + "px," + d.coordinates[1] + "px)"; })
+    .text(function(d){ return d.digit; })
+    .style("color", function(d) { return color(d.digit); })
     .call(drag);
 
 function dragstarted() {
@@ -39,34 +48,99 @@ function dragstarted() {
   d3.select(this).transition()
       .ease("elastic")
       .duration(500)
-      .style("margin-top", -radius1 + "px")
-      .style("margin-left", -radius1 + "px")
-      .style("width", radius1 * 2 + "px")
-      .style("height", radius1 * 2 + "px")
-      .style("border-radius", radius1 + "px")
-      .styleTween("box-shadow", function() { return d3.interpolate("0 0px 0px rgba(0,0,0,0)", "0 4px 8px rgba(0,0,0,.3)"); });
+      .attr('class', 'digit draggable dragging')
+      .style("margin-top", "-4px")
+      .styleTween("text-shadow", function() { return d3.interpolate("0 0px 0px rgba(0,0,0,0)", "0 4px 4px rgba(0,0,0,.3)"); });
 }
 
 function dragged(d) {
-  d[0] = d3.event.x;
-  d[1] = d3.event.y;
+  d.coordinates[0] = d3.event.x;
+  d.coordinates[1] = d3.event.y;
 
   d3.select(this)
-      .style(transform, function(d) { return "translate(" + d[0] + "px," + d[1] + "px)"; });
+      .style(transform, function(d) { return "translate(" + d.coordinates[0] + "px," + d.coordinates[1] + "px)"; });
 }
 
 function dragended() {
   d3.select(this).transition()
       .ease("elastic")
       .duration(500)
-      .style("margin-top", -radius0 + "px")
-      .style("margin-left", -radius0 + "px")
-      .style("width", radius0 * 2 + "px")
-      .style("height", radius0 * 2 + "px")
-      .style("border-radius", radius0 + "px")
-      .styleTween("box-shadow", function() { return d3.interpolate("0 4px 8px rgba(0,0,0,.3)", "0 0px 0px rgba(0,0,0,0)"); });
+      .attr('class', 'digit draggable')
+      .style("margin-top", "0px")
+      .styleTween("text-shadow", function() { return d3.interpolate("0 4px 4px rgba(0,0,0,.3)", "0 0px 0px rgba(0,0,0,0)"); });
+  
+  var collision = detectCollision(this);
+  
+  if(collision.length > 0)
+    addEmUp(collision[0], collision[1]);
 }
 
 function nozoom() {
   d3.event.preventDefault();
+}
+
+function nodeDistance(n1, n2){
+  return Math.sqrt((n2[1]-n1[1])*(n2[1]-n1[1]) + (n2[0]-n1[0])*(n2[0]-n1[0]));
+}
+
+function detectCollision(element){
+  var i, index = +element.getAttribute('data-index');
+  var currentItem = data.filter(function(d){ return d.id === index; })[0];
+  
+  for(i = 0; i < data.length; i++){
+    if(data[i].id !== currentItem.id && nodeDistance(currentItem.coordinates, data[i].coordinates) < 30){
+      return [currentItem, data[i]];
+    }
+  }
+  return [];
+}
+
+function addEmUp(n1, n2){
+  console.log('adding: ', n1, n2);
+  
+  $('.first-number').text(n1.digit);
+  $('.operator').text('+');
+  $('.second-number').text(n2.digit);
+  
+  $('.equation-area, .mask').fadeIn();
+  
+  $('.answer-input').focus();
+  
+  $('.answer-input').on('keypress',function(e){
+    if(e.keyCode === 13){
+     displayAnswer(n1, n2, $(this).val());
+      $('.answer-input').off('keypress');
+    }
+  });
+}
+
+function displayAnswer(n1, n2, newNumber){
+  data.splice(data.indexOf(n1), 1);
+  data.splice(data.indexOf(n2), 1);
+  
+  $('.equation-area, .mask').fadeOut();
+  $('.answer-input').val('');
+  
+  console.log(newNumber.length);
+  var i;
+  for (i=0; i < newNumber.length; i++){
+    data.push({
+      id: newIndex++,
+      digit: +newNumber[i],
+      coordinates: [n1.coordinates[0] + 30*i, n1.coordinates[1]]
+    });
+  }
+  console.log(data);
+  d3.select('body').selectAll(".digit")
+    .remove();
+  
+  d3.select('body').selectAll(".digit")
+    .data(data)
+  .enter().append("div")
+    .attr('class', 'digit draggable')
+    .attr('data-index', function(d){ return d.id; })
+    .style(transform, function(d) { return "translate(" + d.coordinates[0] + "px," + d.coordinates[1] + "px)"; })
+    .text(function(d){ return d.digit; })
+    .style("color", function(d) { return color(d.digit); })
+    .call(drag);
 }

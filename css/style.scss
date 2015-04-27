@@ -1,10 +1,56 @@
+@import url(http://fonts.googleapis.com/css?family=Walter+Turncoat);
+
 html,
 body {
   height: 100%;
   margin: 0;
   overflow: hidden;
+  font-size: 72px;
+  font-family: 'Walter Turncoat', cursive;
 }
 
 div {
   position: absolute;
+}
+
+.digit {
+  font-size: 72px;
+  font-family: 'Walter Turncoat', cursive;
+  
+  &.draggable {
+    cursor: -webkit-grab;
+    cursor: grab;
+  
+    &.dragging {
+      cursor: -webkit-grabbing;
+      cursor: grabbing;
+    }
+  }
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0.5, 0.5, 0.5, 0.75);
+  z-index: 1;
+}
+
+.equation-area {
+  position: fixed;
+  top: 200px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index:1;
+  color: #fff;
+  
+  input {
+    font-size: 72px;
+    border-radius: 20px;
+    width: 120px;
+    font-family: 'Walter Turncoat', cursive;
+  }
 }

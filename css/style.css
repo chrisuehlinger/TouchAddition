@@ -1,11 +1,53 @@
-/* line 2, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+@import url(http://fonts.googleapis.com/css?family=Walter+Turncoat);
+/* line 4, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden; }
+  overflow: hidden;
+  font-size: 72px;
+  font-family: 'Walter Turncoat', cursive; }
 
-/* line 8, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 12, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 div {
   position: absolute; }
+
+/* line 16, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+.digit {
+  font-size: 72px;
+  font-family: 'Walter Turncoat', cursive; }
+  /* line 20, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+  .digit.draggable {
+    cursor: -webkit-grab;
+    cursor: grab; }
+    /* line 24, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+    .digit.draggable.dragging {
+      cursor: -webkit-grabbing;
+      cursor: grabbing; }
+
+/* line 31, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(1, 1, 1, 0.75);
+  z-index: 1; }
+
+/* line 41, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+.equation-area {
+  position: fixed;
+  top: 200px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
+  color: #fff; }
+  /* line 50, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+  .equation-area input {
+    font-size: 72px;
+    border-radius: 20px;
+    width: 120px;
+    font-family: 'Walter Turncoat', cursive; }
 
 /*# sourceMappingURL=style.css.map */

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Touch Addition</title>
+        <title>Touch Math</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
@@ -12,6 +12,14 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <div class="mask"></div>
+        <div class="equation-area"> 
+          <span class="first-number"></span>
+          <span class="operator"></span>
+          <span class="second-number"></span>
+          <span class="equals-sign">=</span>
+          <input class="answer-input" type="number" />
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="js/tincan.js"></script>
