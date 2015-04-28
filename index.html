@@ -12,13 +12,29 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div class="mask"></div>
-        <div class="equation-area"> 
+        <div class="mask" style="display:none;"></div>
+        <div class="equation-area" style="display:none;"> 
           <span class="first-number"></span>
           <span class="operator"></span>
           <span class="second-number"></span>
           <span class="equals-sign">=</span>
           <input class="answer-input" type="number" pattern="[0-9]*"/>
+        </div>
+        <div class="dial-wrapper" style="display:none;">
+          <div class="dial" >
+            <div class="operator-panel"> 
+              <span class="operator">+</span>
+            </div>
+            <div class="operator-panel"> 
+              <span class="operator">&mdash;</span>
+            </div>
+            <div class="operator-panel"> 
+              <span class="operator"> &#215;</span>
+            </div>
+            <div class="operator-panel"> 
+              <span class="operator">/</span>
+            </div>
+          </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>

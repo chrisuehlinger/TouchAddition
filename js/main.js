@@ -11,6 +11,9 @@ var data = d3.range(20).map(function(d) {
   };
 });
 
+var startingData = _.cloneDeep(data);
+var record = [];
+
 var newIndex = 20;
 
 $('.equation-area, .mask').hide();
@@ -47,7 +50,7 @@ function dragstarted() {
 
   d3.select(this).transition()
       .ease("elastic")
-      .duration(500)
+      .duration(300)
       .attr('class', 'digit draggable dragging')
       .style("margin-top", "-4px")
       .styleTween("text-shadow", function() { return d3.interpolate("0 0px 0px rgba(0,0,0,0)", "0 4px 4px rgba(0,0,0,.3)"); });
@@ -64,15 +67,16 @@ function dragged(d) {
 function dragended() {
   d3.select(this).transition()
       .ease("elastic")
-      .duration(500)
+      .duration(300)
       .attr('class', 'digit draggable')
       .style("margin-top", "0px")
       .styleTween("text-shadow", function() { return d3.interpolate("0 4px 4px rgba(0,0,0,.3)", "0 0px 0px rgba(0,0,0,0)"); });
   
   var collision = detectCollision(this);
   
-  if(collision.length > 0)
-    addEmUp(collision[0], collision[1]);
+  if(collision.length > 0){
+    var operator = chooseOperator(collision[0], collision[1]);
+  }
 }
 
 function nozoom() {
@@ -95,14 +99,32 @@ function detectCollision(element){
   return [];
 }
 
-function addEmUp(n1, n2){
+function chooseOperator(n1, n2){
+  $('.dial-wrapper, .mask').fadeIn();
+  $('.operator-panel').on('click', function(e){
+    var operator = $(this).text();
+    
+    $('.dial-wrapper').fadeOut();
+    addEmUp(n1,n2,operator);
+  });
+  
+  return "+"
+}
+
+function addEmUp(n1, n2, operator){
   console.log('adding: ', n1, n2);
   
+  setTimeout(function(){
+    $('.digit[data-index="' + n1.id + '"]').addClass('combined');
+    $('.digit[data-index="' + n2.id + '"]').addClass('combined');
+  }, 390);
+  
+  
   $('.first-number').text(n1.digit);
-  $('.operator').text('+');
+  $('.equation-area .operator').text(operator);
   $('.second-number').text(n2.digit);
   
-  $('.equation-area, .mask').fadeIn();
+  $('.equation-area').fadeIn(500);
   
   $('.answer-input').focus();
   
@@ -118,10 +140,9 @@ function displayAnswer(n1, n2, newNumber){
   data.splice(data.indexOf(n1), 1);
   data.splice(data.indexOf(n2), 1);
   
-  $('.equation-area, .mask').fadeOut();
+  $('.equation-area, .mask').fadeOut(500);
   $('.answer-input').blur().val('');
   
-  console.log(newNumber.length);
   var i;
   for (i=0; i < newNumber.length; i++){
     data.push({
@@ -130,7 +151,7 @@ function displayAnswer(n1, n2, newNumber){
       coordinates: [n1.coordinates[0] + 30*i, n1.coordinates[1]]
     });
   }
-  console.log(data);
+  
   d3.select('body').selectAll(".digit")
     .remove();
   

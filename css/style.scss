@@ -1,5 +1,24 @@
 @import url(http://fonts.googleapis.com/css?family=Walter+Turncoat);
 
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -24,6 +43,11 @@ div {
     &.dragging {
       cursor: -webkit-grabbing;
       cursor: grabbing;
+    }
+    
+    &.combined {
+      -webkit-animation: fadeOut 0.25s ease both;
+      animation: fadeOut 0.25s ease both;
     }
   }
 }
@@ -53,4 +77,69 @@ div {
     width: 120px;
     font-family: 'Walter Turncoat', cursive;
   }
+}
+
+.dial-wrapper{
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+  z-index: 1;
+}
+
+.dial {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  position: relative;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border-radius: 50%;
+}
+.dial .operator-panel {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  box-sizing: border-box;
+  padding-top: 15%;
+  text-align: center;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 24px;
+  background: url(http://subtlepatterns.com/patterns/stardust.png);
+  -webkit-transition: background 0.3s, border 0.3s, color 0.3s;
+          transition: background 0.3s, border 0.3s, color 0.3s;
+}
+.dial .operator-panel:hover {
+  background: url(http://subtlepatterns.com/patterns/crossword.png);
+  color: #333;
+  border-color: #333;
+}
+.dial .operator-panel .operator {
+  display: inline-block;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.dial .operator-panel:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-top-left-radius: 100%;
+}
+.dial .operator-panel:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-top-right-radius: 100%;
+}
+.dial .operator-panel:nth-child(3) {
+  bottom: 0;
+  right: 0;
+  border-bottom-right-radius: 100%;
+}
+.dial .operator-panel:nth-child(4) {
+  bottom: 0;
+  left: 0;
+  border-bottom-left-radius: 100%;
 }
