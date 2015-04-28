@@ -105,6 +105,7 @@ function chooseOperator(n1, n2){
     var operator = $(this).text();
     
     $('.dial-wrapper').fadeOut();
+    $('.operator-panel').off('click');
     addEmUp(n1,n2,operator);
   });
   
