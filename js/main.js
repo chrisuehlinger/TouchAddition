@@ -101,11 +101,11 @@ function detectCollision(element){
 
 function chooseOperator(n1, n2){
   $('.dial-wrapper, .mask').fadeIn();
-  $('.operator-panel').on('click', function(e){
+  $('.operator-panel').on('click touchend', function(e){
     var operator = $(this).text();
     
     $('.dial-wrapper').fadeOut();
-    $('.operator-panel').off('click');
+    $('.operator-panel').off('click touchend');
     addEmUp(n1,n2,operator);
   });
   

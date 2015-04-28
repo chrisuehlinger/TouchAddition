@@ -75,10 +75,10 @@ div {
 /* line 82, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial-wrapper {
   position: fixed;
-  top: 10%;
-  bottom: 10%;
-  left: 10%;
-  right: 10%;
+  top: 20%;
+  bottom: 20%;
+  left: 20%;
+  right: 20%;
   z-index: 1; }
 
 /* line 91, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
