@@ -62,7 +62,7 @@ div {
   bottom: 0;
   right: 0;
   background: rgba(1, 1, 1, 0.75);
-  z-index: 1; }
+  z-index: 3; }
 
 /* line 74, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .equation-area {
@@ -71,7 +71,7 @@ div {
   left: 0;
   right: 0;
   text-align: center;
-  z-index: 1;
+  z-index: 3;
   color: #fff; }
   /* line 83, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
   .equation-area input {
@@ -87,7 +87,7 @@ div {
   bottom: 20%;
   left: 20%;
   right: 20%;
-  z-index: 1; }
+  z-index: 3; }
 
 /* line 100, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial {

@@ -4,12 +4,13 @@ var width = self.frameElement ? 960 : innerWidth,
     height = self.frameElement ? 500 : innerHeight;
 
 var midX = width / 2,
-    midY = height / 2;
+    midY = (height / 2) - 100;
 
 var vertSpacing = 35,
     horzSpacing = 25;
 
-
+console.log('width: ' + width);
+console.log('height: ' + height);
 
 var staticData = [
   {
@@ -365,11 +366,11 @@ function displayAnswer(n1, n2, newNumber){
   $('.answer-input').blur().val('');
   
   var i;
-  for (i=0; i < newNumber.length; i++){
+  for (i= newNumber.length-1; i >= 0 ; i--){
     data.push({
       id: newIndex++,
       digit: +newNumber[i],
-      coordinates: [n1.coordinates[0] + 45*i, n1.coordinates[1]]
+      coordinates: [n2.coordinates[0] + 45*i - 45*(newNumber.length-1), midY + 110]
     });
   }
   
