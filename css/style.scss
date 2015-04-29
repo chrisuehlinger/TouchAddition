@@ -35,6 +35,14 @@ div {
 .digit {
   font-size: 72px;
   font-family: 'Walter Turncoat', cursive;
+  width: 50px;
+  text-align: center;
+  
+  &.nondraggable {
+    color: #000;
+    z-index:2;
+    pointer-events: none;
+  }
   
   &.draggable {
     cursor: -webkit-grab;
@@ -43,6 +51,7 @@ div {
     &.dragging {
       cursor: -webkit-grabbing;
       cursor: grabbing;
+      z-index: 3;
     }
     
     &.combined {

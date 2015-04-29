@@ -32,21 +32,29 @@ div {
 /* line 35, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .digit {
   font-size: 72px;
-  font-family: 'Walter Turncoat', cursive; }
-  /* line 39, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+  font-family: 'Walter Turncoat', cursive;
+  width: 50px;
+  text-align: center; }
+  /* line 41, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+  .digit.nondraggable {
+    color: #000;
+    z-index: 2;
+    pointer-events: none; }
+  /* line 47, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
   .digit.draggable {
     cursor: -webkit-grab;
     cursor: grab; }
-    /* line 43, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+    /* line 51, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
     .digit.draggable.dragging {
       cursor: -webkit-grabbing;
-      cursor: grabbing; }
-    /* line 48, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+      cursor: grabbing;
+      z-index: 3; }
+    /* line 57, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
     .digit.draggable.combined {
       -webkit-animation: fadeOut 0.25s ease both;
       animation: fadeOut 0.25s ease both; }
 
-/* line 55, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 64, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .mask {
   position: fixed;
   top: 0;
@@ -56,7 +64,7 @@ div {
   background: rgba(1, 1, 1, 0.75);
   z-index: 1; }
 
-/* line 65, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 74, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .equation-area {
   position: fixed;
   top: 200px;
@@ -65,14 +73,14 @@ div {
   text-align: center;
   z-index: 1;
   color: #fff; }
-  /* line 74, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+  /* line 83, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
   .equation-area input {
     font-size: 72px;
     border-radius: 20px;
     width: 120px;
     font-family: 'Walter Turncoat', cursive; }
 
-/* line 82, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 91, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial-wrapper {
   position: fixed;
   top: 20%;
@@ -81,7 +89,7 @@ div {
   right: 20%;
   z-index: 1; }
 
-/* line 91, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 100, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial {
   height: 200px;
   width: 200px;
@@ -92,7 +100,7 @@ div {
   transform: rotate(45deg);
   border-radius: 50%; }
 
-/* line 101, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 110, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial .operator-panel {
   position: absolute;
   width: 50%;
@@ -107,44 +115,44 @@ div {
   -webkit-transition: background 0.3s, border 0.3s, color 0.3s;
   transition: background 0.3s, border 0.3s, color 0.3s; }
 
-/* line 115, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 124, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial .operator-panel:hover, .dial .operator-panel.active {
   background: url(http://subtlepatterns.com/patterns/crossword.png);
   color: #333;
   border-color: #333; }
 
-/* line 120, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 129, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial .operator-panel .operator {
   display: inline-block;
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg); }
 
-/* line 126, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 135, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial .operator-panel:nth-child(1) {
   top: 0;
   left: 0;
   border-top-left-radius: 100%; }
 
-/* line 131, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 140, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial .operator-panel:nth-child(2) {
   top: 0;
   right: 0;
   border-top-right-radius: 100%; }
 
-/* line 136, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 145, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial .operator-panel:nth-child(3) {
   bottom: 0;
   right: 0;
   border-bottom-right-radius: 100%; }
 
-/* line 141, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 150, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .dial .operator-panel:nth-child(4) {
   bottom: 0;
   left: 0;
   border-bottom-left-radius: 100%; }
 
-/* line 147, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
+/* line 156, /Users/Chris/Development/NextGenLessons/TouchAddition/css/style.scss */
 .play-button {
   color: dodgerblue;
   font-size: 24px;

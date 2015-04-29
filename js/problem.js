@@ -3,15 +3,52 @@
 var width = self.frameElement ? 960 : innerWidth,
     height = self.frameElement ? 500 : innerHeight;
 
-var data = d3.range(20).map(function(d) {
-  return {
-    id: d,
+var midX = width / 2,
+    midY = height / 2;
+
+var vertSpacing = 35,
+    horzSpacing = 25;
+
+
+
+var staticData = [
+  {
+    id: 0,
+    digit: 1 + Math.floor(Math.random() * 9),
+    coordinates: [midX - horzSpacing, midY - vertSpacing]
+  },
+  {
+    id: 1,
     digit: Math.floor(Math.random() * 10),
-    coordinates: [Math.random() * width, Math.random() * height]
-  };
+    coordinates: [midX + horzSpacing, midY - vertSpacing]
+  },
+  {
+    id: 2,
+    digit: 1 + Math.floor(Math.random() * 9),
+    coordinates: [midX - horzSpacing, midY + vertSpacing]
+  },
+  {
+    id: 3,
+    digit: Math.floor(Math.random() * 10),
+    coordinates: [midX + horzSpacing, midY + vertSpacing]
+  }
+];
+
+var data = _.cloneDeep(staticData);
+
+staticData.push({
+  id: 5,
+  digit: '+',
+  coordinates: [midX - 70, midY + vertSpacing]
 });
 
-var newIndex = 20;
+staticData.push({
+  id: 6,
+  digit: '___',
+  coordinates: [midX - 65, midY + 50]
+});
+
+var newIndex = 10;
 
 var record = [
   {
@@ -42,7 +79,7 @@ function playBack(){
     var delay = (remainingRecord.length > 1) && timeScale * (remainingRecord[1].time - remainingRecord[0].time);
     switch(currentRecord.type){
       case 'start':
-        d3.selectAll('.digit').remove();
+        d3.selectAll('.digit.draggable').remove();
         render(data);
         newIndex = 20;
         delay = 1000;
@@ -115,9 +152,6 @@ function playBack(){
   }
 }
 
-
-
-
 $('.equation-area, .mask').hide();
 
 console.log(data);
@@ -136,13 +170,27 @@ var drag = d3.behavior.drag()
     .on("dragend", dragended);
 
 render(data);
+initialRender(staticData);
+
+function initialRender(data){
+  d3.select('body')
+    .selectAll(".digit.nondraggable")
+      .data(data)
+    .enter().append("div")
+      .attr('class', 'digit nondraggable')
+      .style(transform, function(d) { return "translate(" + d.coordinates[0] + "px," + d.coordinates[1] + "px)"; })
+      .text(function(d){ return d.digit; })
+      .call(drag);
+  
+  
+}
 
 function render(data){
 
   d3.select("body")
       .on("touchstart", nozoom)
       .on("touchmove", nozoom)
-    .selectAll(".digit")
+    .selectAll(".digit.draggable")
       .data(data)
     .enter().append("div")
       .attr('class', 'digit draggable')
@@ -325,10 +373,10 @@ function displayAnswer(n1, n2, newNumber){
     });
   }
   
-  d3.select('body').selectAll(".digit")
+  d3.select('body').selectAll(".digit.draggable")
     .remove();
   
-  d3.select('body').selectAll(".digit")
+  d3.select('body').selectAll(".digit.draggable")
     .data(data)
   .enter().append("div")
     .attr('class', 'digit draggable')
