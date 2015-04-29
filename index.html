@@ -22,20 +22,21 @@
         </div>
         <div class="dial-wrapper" style="display:none;">
           <div class="dial" >
-            <div class="operator-panel"> 
+            <div class="operator-panel" data-operator="plus"> 
               <span class="operator">+</span>
             </div>
-            <div class="operator-panel"> 
+            <div class="operator-panel" data-operator="minus"> 
               <span class="operator">&mdash;</span>
             </div>
-            <div class="operator-panel"> 
+            <div class="operator-panel" data-operator="times"> 
               <span class="operator"> &#215;</span>
             </div>
-            <div class="operator-panel"> 
+            <div class="operator-panel" data-operator="divide"> 
               <span class="operator">/</span>
             </div>
           </div>
         </div>
+        <a class="play-button" href="javascript: playBack();">Playback</a>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="js/tincan.js"></script>

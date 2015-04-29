@@ -112,7 +112,7 @@ div {
   -webkit-transition: background 0.3s, border 0.3s, color 0.3s;
           transition: background 0.3s, border 0.3s, color 0.3s;
 }
-.dial .operator-panel:hover {
+.dial .operator-panel:hover,.dial .operator-panel.active {
   background: url(http://subtlepatterns.com/patterns/crossword.png);
   color: #333;
   border-color: #333;
@@ -142,4 +142,12 @@ div {
   bottom: 0;
   left: 0;
   border-bottom-left-radius: 100%;
+}
+
+.play-button {
+  color: dodgerblue;
+  font-size: 24px;
+  position: fixed;
+  top: 5px;
+  left: 5px;
 }
