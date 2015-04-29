@@ -82,7 +82,7 @@ function playBack(){
       case 'start':
         d3.selectAll('.digit.draggable').remove();
         render(data);
-        newIndex = 20;
+        newIndex = 10;
         delay = 1000;
         break;
 
