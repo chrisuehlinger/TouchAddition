@@ -25,6 +25,8 @@ var record = [
 var mode = 'record';
 var timeScale = 2;
 
+$('.play-button').on('click touchend', playBack);
+
 function playBack(){
   mode = 'playback';
   data = _.cloneDeep(record[0].data);
