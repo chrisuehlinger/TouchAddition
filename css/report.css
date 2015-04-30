@@ -1,0 +1,79 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+/* line 3, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+html, body {
+  font-family: Lato, sans-serif;
+  margin: 0; }
+
+/* line 8, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+.report-title {
+  margin: 10px 10px 0; }
+  @media screen and (max-width: 768px) {
+    .report-title {
+      text-align: center; } }
+
+/* line 15, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+.report-area {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px; }
+  /* line 21, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+  .report-area .series-wrapper {
+    display: inline-block;
+    width: 25%; }
+    @media screen and (min-width: 769px) {
+      /* line 26, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+      .report-area .series-wrapper:not(:first-of-type) .series {
+        border-left: 1px solid #999; } }
+    @media screen and (max-width: 768px) {
+      .report-area .series-wrapper {
+        width: 50%; }
+        /* line 34, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+        .report-area .series-wrapper:nth-child(:odd) {
+          border-left: 1px solid #999; } }
+    @media screen and (max-width: 400px) {
+      .report-area .series-wrapper {
+        width: 100%; } }
+    /* line 43, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+    .report-area .series-wrapper .series-title {
+      text-align: center;
+      padding-left: 40px;
+      margin: 0; }
+    /* line 49, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+    .report-area .series-wrapper .series {
+      padding: 10px; }
+      /* line 52, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+      .report-area .series-wrapper .series .line-item {
+        white-space: nowrap; }
+        /* line 55, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+        .report-area .series-wrapper .series .line-item label {
+          display: inline-block;
+          vertical-align: middle;
+          text-align: center;
+          width: 30px;
+          padding: 10px;
+          padding-left: 0; }
+        /* line 64, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+        .report-area .series-wrapper .series .line-item .progress-bar-wrapper {
+          display: inline-block;
+          vertical-align: middle;
+          height: 20px;
+          width: calc(100% - 40px);
+          box-sizing: border-box;
+          border: 1px solid black;
+          overflow: hidden;
+          border-radius: 5px; }
+          /* line 74, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+          .report-area .series-wrapper .series .line-item .progress-bar-wrapper .progress-bar {
+            display: inline-block;
+            height: 18px;
+            width: 0%;
+            -webkit-transition: width 1s ease-out;
+            transition: width 1s ease-out; }
+          /* line 82, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+          .report-area .series-wrapper .series .line-item .progress-bar-wrapper .progress-bar-right {
+            background: #18d818; }
+          /* line 86, /Users/Chris/Development/NextGenLessons/TouchAddition/css/report.scss */
+          .report-area .series-wrapper .series .line-item .progress-bar-wrapper .progress-bar-wrong {
+            background: red; }
+
+/*# sourceMappingURL=report.css.map */

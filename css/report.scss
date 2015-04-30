@@ -1,0 +1,93 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+html, body {
+  font-family: Lato, sans-serif;
+  margin: 0;
+}
+
+.report-title {
+  margin: 10px 10px 0;
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
+}
+
+.report-area {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  
+  
+  .series-wrapper {
+    display: inline-block;
+    width: 25%;
+    
+    @media screen and (min-width: 769px) {
+      &:not(:first-of-type) .series {
+        border-left: 1px solid #999;
+      }
+    }
+  
+    @media screen and (max-width: 768px) {
+      width: 50%;
+      
+      &:nth-child(:odd){
+        border-left: 1px solid #999;
+      }
+    }
+    
+    @media screen and (max-width: 400px) {
+      width: 100%;
+    }
+    
+    .series-title {
+      text-align: center;
+      padding-left: 40px;
+      margin: 0;
+    }
+    
+    .series {
+      padding: 10px;
+      
+      .line-item {
+        white-space: nowrap;
+        
+        label {
+          display: inline-block;
+          vertical-align: middle;
+          text-align: center;
+          width: 30px;
+          padding: 10px;
+          padding-left: 0;
+        }
+        
+        .progress-bar-wrapper {
+          display: inline-block;
+          vertical-align: middle;
+          height: 20px;
+          width: calc(100% - 40px);
+          box-sizing: border-box;
+          border: 1px solid black;
+          overflow: hidden;
+          border-radius: 5px;
+          
+          .progress-bar {
+            display: inline-block;
+            height: 18px;
+            width: 0%;
+            -webkit-transition: width 1.0s ease-out;
+            transition: width 1.0s ease-out;
+          }
+          
+          .progress-bar-right {
+            background: #18d818;
+          }
+          
+          .progress-bar-wrong {
+            background: red;
+          }
+        }
+      }
+    }
+  }
+}
