@@ -80,7 +80,7 @@ function playBack(){
             operator = 'times';
             break;
 
-          case '/':
+          case '÷':
             operator = 'divide';
             break;
         }
@@ -317,12 +317,19 @@ function displayAnswer(n1, n2, newNumber){
   $('.answer-input').blur().val('');
   
   var i;
-  for (i=0; i < newNumber.length; i++){
-    data.push({
+  for (i= 0; i <newNumber.length ; i++){
+    var newDigit = {
       id: newIndex++,
       digit: +newNumber[i],
-      coordinates: [n1.coordinates[0] + 45*i, n1.coordinates[1]]
-    });
+      coordinates: [n2.coordinates[0] + 45*i - 45*(newNumber.length-1), midY + 110]
+    };
+    
+    if(i === 0 && newNumber[i] === '-'){
+      newDigit.digit = +(newNumber[0] + newNumber[1]);
+      i++;
+    }
+    
+    data.push(newDigit);
   }
   
   d3.select('body').selectAll(".digit")

@@ -39,7 +39,7 @@ var data = _.cloneDeep(staticData);
 
 staticData.push({
   id: 5,
-  digit: '+',
+  digit: ['+', '-', '×', '÷'][Math.floor(Math.random()*4)],
   coordinates: [midX - 70, midY + vertSpacing]
 });
 
@@ -118,7 +118,7 @@ function playBack(){
             operator = 'times';
             break;
 
-          case '/':
+          case '÷':
             operator = 'divide';
             break;
         }
@@ -182,8 +182,6 @@ function initialRender(data){
       .style(transform, function(d) { return "translate(" + d.coordinates[0] + "px," + d.coordinates[1] + "px)"; })
       .text(function(d){ return d.digit; })
       .call(drag);
-  
-  
 }
 
 function render(data){
@@ -366,12 +364,19 @@ function displayAnswer(n1, n2, newNumber){
   $('.answer-input').blur().val('');
   
   var i;
-  for (i= newNumber.length-1; i >= 0 ; i--){
-    data.push({
+  for (i= 0; i <newNumber.length ; i++){
+    var newDigit = {
       id: newIndex++,
       digit: +newNumber[i],
       coordinates: [n2.coordinates[0] + 45*i - 45*(newNumber.length-1), midY + 110]
-    });
+    };
+    
+    if(i === 0 && newNumber[i] === '-'){
+      newDigit.digit = +(newNumber[0] + newNumber[1]);
+      i++;
+    }
+    
+    data.push(newDigit);
   }
   
   d3.select('body').selectAll(".digit.draggable")

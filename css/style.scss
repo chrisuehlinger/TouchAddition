@@ -25,7 +25,7 @@ body {
   margin: 0;
   overflow: hidden;
   font-size: 72px;
-  font-family: 'Walter Turncoat', cursive;
+  font-family: 'Walter Turncoat', sans-serif;
 }
 
 div {
@@ -34,7 +34,7 @@ div {
 
 .digit {
   font-size: 72px;
-  font-family: 'Walter Turncoat', cursive;
+  font-family: 'Walter Turncoat', sans-serif;
   width: 50px;
   text-align: center;
   
@@ -84,7 +84,7 @@ div {
     font-size: 72px;
     border-radius: 20px;
     width: 120px;
-    font-family: 'Walter Turncoat', cursive;
+    font-family: 'Walter Turncoat', sans-serif;
   }
 }
 
@@ -117,6 +117,7 @@ div {
   border: 1px solid #fff;
   color: #fff;
   font-size: 24px;
+  cursor: pointer;
   background: url(http://subtlepatterns.com/patterns/stardust.png);
   -webkit-transition: background 0.3s, border 0.3s, color 0.3s;
           transition: background 0.3s, border 0.3s, color 0.3s;
