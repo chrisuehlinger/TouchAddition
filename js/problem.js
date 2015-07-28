@@ -39,7 +39,7 @@ var data = _.cloneDeep(staticData);
 
 staticData.push({
   id: 5,
-  digit: ['+', '-', '×', '÷'][Math.floor(Math.random()*4)],
+  digit: ['+', '-', '×', '÷'][0],//[Math.floor(Math.random()*4)],
   coordinates: [midX - 70, midY + vertSpacing]
 });
 
