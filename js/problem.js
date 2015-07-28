@@ -61,7 +61,7 @@ var record = [
 
 
 var mode = 'record';
-var timeScale = 2;
+var timeScale = 1;
 
 $('.play-button').on('click touchend', playBack);
 
